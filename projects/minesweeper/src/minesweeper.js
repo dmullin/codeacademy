@@ -49,22 +49,26 @@ class Board {
     hasSafeTiles() {
         return this._numberOfTiles !== this._numberOfBombs;
     }
+    print() {
+        console.log(board.map(row  => row.join(' | ')).join('\n'));
+    }
+    static generatePlayerBoard = function(numberOfRows, numberOfColumns) {
+        let board = [];
+        for (let rowIndex = 0; rowIndex<numberOfRows; rowIndex++) {
+            let row = [];
+            for (let columnIndex = 0; columnIndex<numberOfColumns; columnIndex++) {
+                row.push(' ');
+            } 
+            board.push(row);
+        } 
+        return board;
+    }
 }// end of class Board
 
 
 
 // generate empty game board
-const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
-    let board = [];
-    for (let rowIndex = 0; rowIndex<numberOfRows; rowIndex++) {
-        let row = [];
-        for (let columnIndex = 0; columnIndex<numberOfColumns; columnIndex++) {
-            row.push(' ');
-        } 
-        board.push(row);
-    } 
-    return board;
-};
+
 
 // generate bomb board
 const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
