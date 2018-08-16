@@ -62,7 +62,31 @@ class Board {
             board.push(row);
         } 
         return board;
-    }
+    }// end of generatePlayerBoard
+    static generateBombBoard = function(numberOfRows, numberOfColumns, numberOfBombs) {
+        let board = [];
+        for (let rowIndex = 0; rowIndex<numberOfRows; rowIndex++) {
+            let row = [];
+            for (let columnIndex = 0; columnIndex<numberOfColumns; columnIndex++) {
+                row.push(null);
+            } 
+            board.push(row);
+        } 
+    
+        let numberOfBombsPlaced = 0;
+    
+        // place random bombs on the board - this can place bombs on top of bombs at the moment
+        while (numberOfBombsPlaced < numberOfBombs) {
+            let randomRowIndex = Math.floor(Math.random() * numberOfRows);
+            let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
+            if (board[randomRowIndex][randomColumnIndex] !== 'B') {
+                board[randomRowIndex][randomColumnIndex] = 'B';
+                numberOfBombsPlaced++;
+            }
+            
+        }
+        return board;
+    };
 }// end of class Board
 
 
@@ -71,30 +95,7 @@ class Board {
 
 
 // generate bomb board
-const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
-    let board = [];
-    for (let rowIndex = 0; rowIndex<numberOfRows; rowIndex++) {
-        let row = [];
-        for (let columnIndex = 0; columnIndex<numberOfColumns; columnIndex++) {
-            row.push(null);
-        } 
-        board.push(row);
-    } 
 
-    let numberOfBombsPlaced = 0;
-
-    // place random bombs on the board - this can place bombs on top of bombs at the moment
-    while (numberOfBombsPlaced < numberOfBombs) {
-        let randomRowIndex = Math.floor(Math.random() * numberOfRows);
-        let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
-        if (board[randomRowIndex][randomColumnIndex] !== 'B') {
-            board[randomRowIndex][randomColumnIndex] = 'B';
-            numberOfBombsPlaced++;
-        }
-        
-    }
-    return board;
-};
 
 // determine neighbor bombs
 
