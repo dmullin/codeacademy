@@ -103,10 +103,7 @@ class Board {
 // user flip tile
 
 
-// create game board
-const printBoard = board => {
-    console.log(board.map(row  => row.join(' | ')).join('\n'));
-};
+
 
 
 let playerBoard = generatePlayerBoard(3, 4);
