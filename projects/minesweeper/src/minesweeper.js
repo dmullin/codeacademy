@@ -85,7 +85,7 @@ class Board {
         } 
         return board;
     }// end of generatePlayerBoard
-    static generateBombBoard = function(numberOfRows, numberOfColumns, numberOfBombs) {
+    static generateBombBoard(numberOfRows, numberOfColumns, numberOfBombs) {
         let board = [];
         for (let rowIndex = 0; rowIndex<numberOfRows; rowIndex++) {
             let row = [];
