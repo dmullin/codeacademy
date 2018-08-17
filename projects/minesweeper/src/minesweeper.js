@@ -31,7 +31,7 @@ class Board {
     get playerBoard() {
         return this._playerBoard;
     }
-    flipTile = (rowIndex, columnIndex) => {
+    flipTile(rowIndex, columnIndex) {
         if (this._playerBoard[rowIndex][columnIndex] !== ' ') {
             console.log('This tile has already been flipped!');
             return;
