@@ -1,3 +1,6 @@
+import Board from './board';
+
+
 // create class Game
 class Game {
     constructor(numberOfRows, numberOfColumns, numberOfBombs) {
