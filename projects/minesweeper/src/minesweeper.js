@@ -43,7 +43,7 @@ class Board {
         }
         this._numberOfTiles--;
     }// end of flipTile function
-    getNumberOfNeighborBombs = function(rowIndex, columnIndex) {
+    getNumberOfNeighborBombs(rowIndex, columnIndex) {
         const neighborOffsets = [
             [-1,-1],
             [-1,0],
