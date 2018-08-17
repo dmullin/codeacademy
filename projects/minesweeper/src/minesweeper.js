@@ -8,7 +8,7 @@ class Game {
         if (this._board.playerBoard[rowIndex][columnIndex] === 'B') {
             console.log('The Game is Over!');
             this._board.print();
-        } else if (this._board.hasSafeTiles()) {
+        } else if (!this._board.hasSafeTiles()) {
             console.log('Congratulations! You Won the Game!');
         } else {
             console.log('Current Board:');
@@ -72,7 +72,7 @@ class Board {
         return this._numberOfTiles !== this._numberOfBombs;
     }
     print() {
-        console.log(this._board.map(row  => row.join(' | ')).join('\n'));
+        console.log(this._playerBoard.map(row  => row.join(' | ')).join('\n'));
     }
     static generatePlayerBoard(numberOfRows, numberOfColumns) {
         let board = [];
