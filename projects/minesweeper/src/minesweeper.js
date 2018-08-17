@@ -110,24 +110,12 @@ class Board {
         return board;
     };
 }// end of class Board
+const g = new Game(3, 3, 3);
+g.playMove(0, 0);
 
 
 
-// generate empty game board
-
-
-// generate bomb board
-
-
-// determine neighbor bombs
-
-
-// user flip tile
-
-
-
-
-
+/*
 let playerBoard = generatePlayerBoard(3, 4);
 let bombBoard = generateBombBoard(3, 4, 5);
 console.log('Player Board: ');
@@ -138,3 +126,4 @@ printBoard(bombBoard);
 flipTile(playerBoard, bombBoard, 0, 1);
 console.log('Updated Player Board: ');
 printBoard(playerBoard);
+*/
