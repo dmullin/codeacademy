@@ -7,7 +7,7 @@
 // game.playMove(0, 1);
 // game.playMove(1, 2);
 // When done run `.exit`
-import Board from './board';
+import {Board} from './board';
 
 
 // create class Game
