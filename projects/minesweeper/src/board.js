@@ -86,5 +86,5 @@ export class Board {
             
         }
         return board;
-    };
+    }// end of generateBombBoard
 }// end of class Board

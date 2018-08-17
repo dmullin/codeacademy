@@ -110,7 +110,8 @@ var Board = exports.Board = function () {
                 }
             }
             return board;
-        }
+        } // end of generateBombBoard
+
     }]);
 
     return Board;
