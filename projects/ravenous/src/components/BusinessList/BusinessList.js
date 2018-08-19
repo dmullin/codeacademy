@@ -13,7 +13,7 @@ class BusinessList extends React.Component {
                 <Business />
                 <Business />
             </div>
-        )
+        );
     }
 };
 
