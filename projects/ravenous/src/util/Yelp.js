@@ -11,19 +11,19 @@ const Yelp = {
             return response.json();
         }).then(jsonResponse => {
             if (jsonResponse.buisnesses) {
-                return jsonResponse.businesses.map(business => {
+                return jsonResponse.businesses.map(business => ({
                     id: business.id,
                     imageSrc: business.image_url,
                     name: business.name,
-                    address: business.address1,
-                    city: business.city,
-                    state: business.state,
-                    zipCode: business.zip_code,
-                    category: business.categories,
+                    address: business.location.address1,
+                    city: business.location.city,
+                    state: business.location.state,
+                    zipCode: business.locaton.zip_code,
+                    category: business.categories[0].title,
                     rating: business.rating,
                     reviewCount: business.review_count
     
-                });
+                }));
             }
         });
     }
