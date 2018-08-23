@@ -37,9 +37,11 @@ class App extends React.Component {
 
   // method to remove tracks from playlist
   removeTrack(track) {
-    this.state.playlistTracks.filter(track.id);
-    return;
+    this.state.playlistTracks.filter(playlistTrack => playlistTrack.id !== track.id);
+    this.setState({ playlistTracks: this.state.playlistTracks });
   }
+
+
 
   render() {
     return (
