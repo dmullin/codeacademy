@@ -41,7 +41,12 @@ class App extends React.Component {
     this.setState({ playlistTracks: this.state.playlistTracks });
   }
 
-
+  // ability to rename created playlist
+  updatePlaylistName(name) {
+    this.setState({
+      playlistName: name
+    });
+  }
 
   render() {
     return (
