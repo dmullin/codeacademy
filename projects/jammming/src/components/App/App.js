@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +23,16 @@ class App extends Component {
         id: id
       }]
     };
+
+    this.addTrack = this.addTrack.bind(this);
   }
+
+  // method to add tracks to playlist
+  addTrack(track) {
+    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+      return;
+    }
+
   render() {
     return (
       <div>
@@ -31,7 +40,7 @@ class App extends Component {
         <div className="App">
           <!-- Add a SearchBar component -->
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.state.addTrack()} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
