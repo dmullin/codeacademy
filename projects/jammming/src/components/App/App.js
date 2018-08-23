@@ -32,7 +32,7 @@ class App extends React.Component {
     if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
     }
-
+  }
   render() {
     return (
       <div>
