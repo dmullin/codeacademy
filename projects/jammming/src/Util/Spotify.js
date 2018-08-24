@@ -13,7 +13,7 @@ const Spotify = {
         const accessTokenArray = window.location.href.match(/access_token=([^&]*)/);
         const expiresInArray = window.location.href.match(/expires_in([^&]*)/);
         if (accessTokenArray && expiresInArray) {
-            accessToken = acessTokenArray[1];
+            accessToken = accessTokenArray[1];
             console.log('get method finds' + accessToken);
             const expiresIn = Number(expiresInArray[1]);
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
@@ -48,6 +48,47 @@ const Spotify = {
                 }));
             }
         })
+    },
+
+    savePlaylist(playlistName, trackURIs) {
+        if (playlistName && trackURIs) {
+            return;
+        }
+        let accessToken = Spotify.getAccessToken();
+        let headers = {
+            Authorization: 'Bearer ${accessToken}'
+        };
+        let userID;
+        let playlistID;
+
+        return fetch('https://api.spotify.com/v1/me', {
+            headers: headers
+        }).then(response => {
+            return response.json();
+        }).then(jsonResponse => {
+            userID = jsonResponse.id;
+        
+
+            return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+                headers: headers,
+                method: 'POST',
+                body: JSON.stringify({playlistName: playlistName})
+            }).then(response => {
+                return response.json();
+            }).then(jsonResponse => {
+                playlistID = jsonResponse.id;
+
+                return fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
+                    headers: headers,
+                    method: 'POST',
+                    body: JSON.stringify({uris: trackURIs})
+                }).then(response => {
+                    return response.json();
+                }).then(jsonResponse => {
+                    playlistID = jsonResponse.id;
+                });
+            });
+        });
     }
 
 };
