@@ -1,4 +1,4 @@
-const clientId = '61abc7f29d9047f5ab69501013755162';
+const clientID = '61abc7f29d9047f5ab69501013755162';
 const redirectURI = 'http://localhost:3000/';
 
 let accessToken;
@@ -9,7 +9,7 @@ const Spotify = {
             return accessToken;
         }
         const accessTokenArray = window.location.href.match(/access_token=([^&]*)/);
-        const expiresInArray = window.location.href.match(/expires_in([^&]*)/);
+        const expiresInArray = window.location.href.match(/expires_in=([^&]*)/);
         if (accessTokenArray && expiresInArray) {
             accessToken = accessTokenArray[1];
             const expiresIn = Number(expiresInArray[1]);
@@ -17,7 +17,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect=${redirectURI}`
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`
             window.location = accessUrl;
         }
     },
@@ -68,9 +68,14 @@ const Spotify = {
             return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
                 headers: headers,
                 method: 'POST',
-                body: JSON.stringify({playlistName: playlistName})
+                body: JSON.stringify({name: playlistName})
             }).then(response => {
-                return response.json();
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.log('API request failed');
+                }
+                
             }).then(jsonResponse => {
                 playlistID = jsonResponse.id;
 
@@ -78,10 +83,6 @@ const Spotify = {
                     headers: headers,
                     method: 'POST',
                     body: JSON.stringify({uris: trackURIs})
-                }).then(response => {
-                    return response.json();
-                }).then(jsonResponse => {
-                    playlistID = jsonResponse.id;
                 });
             });
         });
