@@ -1,5 +1,3 @@
-import SearchBar from "../components/SearchBar/SearchBar";
-
 const clientId = '61abc7f29d9047f5ab69501013755162';
 const redirectURI = 'http://localhost:3000/';
 
@@ -14,24 +12,22 @@ const Spotify = {
         const expiresInArray = window.location.href.match(/expires_in([^&]*)/);
         if (accessTokenArray && expiresInArray) {
             accessToken = accessTokenArray[1];
-            console.log('get method finds' + accessToken);
             const expiresIn = Number(expiresInArray[1]);
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
             const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect=${redirectURI}`
-            window.location.accessUrl;
+            window.location = accessUrl;
         }
     },
 
     search(term) {
         const accessToken = Spotify.getAccessToken();
-        console.log(accessToken);
         const urlToFetch = `https://api.spotify.com/v1/search?type=track&q=${term}`
         return fetch(urlToFetch, {
             headers: {
-                Authorization: 'Bearer ${accessToken}'
+                Authorization: `Bearer ${accessToken}`
             }
         }).then(response => {
             return response.json();
@@ -56,7 +52,7 @@ const Spotify = {
         }
         let accessToken = Spotify.getAccessToken();
         let headers = {
-            Authorization: 'Bearer ${accessToken}'
+            Authorization: `Bearer ${accessToken}`
         };
         let userID;
         let playlistID;
