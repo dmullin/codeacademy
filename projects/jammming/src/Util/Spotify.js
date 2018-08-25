@@ -70,12 +70,7 @@ const Spotify = {
                 method: 'POST',
                 body: JSON.stringify({name: playlistName})
             }).then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    console.log('API request failed');
-                }
-                
+                return response.json(); 
             }).then(jsonResponse => {
                 playlistID = jsonResponse.id;
 

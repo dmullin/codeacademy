@@ -36,8 +36,9 @@ class App extends React.Component {
 
   // method to remove tracks from playlist
   removeTrack(track) {
-    this.state.playlistTracks.filter(playlistTrack => playlistTrack.id !== track.id);
-    this.setState({ playlistTracks: this.state.playlistTracks });
+    let updateTracks = this.state.playlistTracks;
+    updateTracks = updateTracks.filter(removeTrack => removeTrack.id !== track.id);
+    this.setState({ playlistTracks: updateTracks });
   }
 
   // ability to rename created playlist
