@@ -1,5 +1,5 @@
 const clientID = '61abc7f29d9047f5ab69501013755162';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://david-jammming.surge.sh/';
 
 let accessToken;
 
