@@ -27,11 +27,10 @@ class App extends React.Component {
     if (this.state.playlistTracks.find(playlistTrack => playlistTrack.id === track.id)) {
       return;
     } else {
-      this.state.playlistTracks.push(track);
+      let newList = this.state.playlistTracks.slice();
+      newList.push(track);
+      this.setState({playlistTracks: newList});
     }
-    this.setState({
-      playlistTracks: this.state.playlistTracks
-    });
   }
 
   // method to remove tracks from playlist
