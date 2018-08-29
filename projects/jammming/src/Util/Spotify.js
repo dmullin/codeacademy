@@ -69,8 +69,6 @@ const Spotify = {
                 headers: headers,
                 method: 'POST',
                 body: JSON.stringify({name: playlistName})
-            }).then(response => {
-                return response.json(); 
             }).then(jsonResponse => {
                 playlistID = jsonResponse.id;
 
